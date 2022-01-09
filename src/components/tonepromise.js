@@ -1,25 +1,34 @@
 import React, { useState, useEffect} from 'react'
-import { IconButton, Paper, ButtonGroup } from  '@mui/material'
+import { IconButton, Paper, ButtonGroup, List } from  '@mui/material'
 import { Pause , Stop, PlayArrow, MusicNote } from '@mui/icons-material'
 import * as Tone from 'tone'
  
-/* 
-const synth = new Tone.Synth().toDestination();
-const seq = new Tone.Sequence((time, note) => {
-	synth.triggerAttackRelease(note, 0.1, time);
-	// subdivisions are given as subarrays
-}, ["C4", ["E4", "D4", "E4"], "G4", ["A4", "G4"]]).start(0);
-Tone.Transport.start(); */
 
     export default function PlayData() {
         const [toneState, setToneState] = useState('')
         const [hasRunState, setHasRunState] = useState(false)
-        const [notes, setNotes] = useState([20])
+        const [notes, setNotes] = useState([104, 151,  190, 68,   442,  34, 9,  17,  25,   61,  37])
+   
+        function ElementLi(props) {
+                return(
+                    <List>
+                        {notes.map((note, i) => {
+                        return(
+                        <li key={note + i}>{note}</li>
+                    
+                        )})
+                    }
+                    </List>
+                )}
         
         const now = Tone.now() 
-        const synth = new Tone.FMSynth().toDestination()
-     
-
+        
+ 
+    
+        const filter = new Tone.Filter(800, "lowpass").toDestination();
+        filter.frequency.rampTo(8000, 100);
+        let distort = new Tone.Distortion(2).connect(filter)
+        const synth = new Tone.FMSynth().connect(distort)
 
         function initTone() {
             if (toneState === '') {
@@ -52,30 +61,12 @@ Tone.Transport.start(); */
            console.log(notes)
 
        }
-       //play button
-       //function to play array, so that array of values from axios call will be able to be played.
-
-
- /*              const now = Tone.now() 
-        const synth = new Tone.FMSynth().toDestination()
-        const ArraySeq = new Tone.Sequence(function(time, note) {
-            synth.triggerAttackRelease(note, time)
-            console.log('hello') 
-            
-        },
-        notes, '8n')
-  const playInst = () => {
-        ArraySeq.stop((now + 1))
-        console.log(ArraySeq)
-            return (
-            ArraySeq.start()
-            )
-       }
- */
+       
        const handleClickPlay = () => {
         if (hasRunState === false) {
             const ArraySeq = new Tone.Sequence((time, note) => {
                 synth.triggerAttackRelease(note, '8n', time)
+                
                 console.log(note) 
                 
             },
@@ -94,6 +85,9 @@ Tone.Transport.start(); */
        }
         return (
             <Paper variant="outlined" >
+                <Paper elevation={2}>
+                    <ElementLi/>
+                </Paper>
                 <ButtonGroup>
                     <IconButton aria-label="MusicNote" color="secondary" size="large" onClick={handleClickNote}>
                     <MusicNote/>
@@ -110,19 +104,4 @@ Tone.Transport.start(); */
                 </ButtonGroup>
             </Paper>
     )
-    }/* 
-    const now = Tone.now()
-    let note = 101
-   
-    console.log('asjkf')
-    await Tone.start() 
-    const synth = await new Tone.FMSynth().toDestination()
-    console.log(note)
-        return (
-       
-        synth.triggerAttackRelease(note,"4n", now) 
-        )
-
-
-
- */
+    }
