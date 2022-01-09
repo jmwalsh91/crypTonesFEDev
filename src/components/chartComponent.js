@@ -2,47 +2,50 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts'
 
 export default class ApexChart extends React.Component {
-        constructor(props) {
-          super(props);
-
-          this.state = {
-          
+    constructor(props) {
+        super(props);
+    //this.state.series.data =~will be~ props."cryptData"
+        this.state = {
+        
             series: [{
                 name: "Desktops",
                 data: [104, 151,  190, 68,   442,  34, 9,  17,  25,   61,  37]
             }],
             options: {
-              chart: {
+            chart: {
                 height: 350,
                 type: 'line',
                 zoom: {
-                  enabled: false
-                }
-              },
-              dataLabels: {
                 enabled: false
-              },
-              stroke: {
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
                 curve: 'stepline'
-              },
-              title: {
+            },
+            title: {
                 text: 'BTC PRICE',
                 align: 'left'
-              },
-              grid: {
-                row: {
-                  colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                  opacity: 0.5
-                },
-              },
-              xaxis: {
-                categories: [],
-              }
             },
-          
-          
-          };
-        }
+            markers: {
+                strokeColors: '#08c9c9'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                    },
+                },
+                xaxis: {
+                    categories: [],
+                }
+                },
+            
+            
+            };
+    }
 
       
 
