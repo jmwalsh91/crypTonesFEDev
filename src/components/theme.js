@@ -4,7 +4,7 @@ const cryptonesTheme = createTheme({
     palette: {
         type: 'light',
         primary: {
-          main: 'rgba(222,211,189,0.91)',
+          main: 'rgba(222,211,189,0.91)'
         },
         secondary: {
           main: '#08c9c9',

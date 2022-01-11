@@ -59,3 +59,4 @@ export default class ApexChart extends React.Component {
         }
       }
 
+//

@@ -13,7 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
-const pages = ['Reload', 'About', 'Sign In'];
+import UserLogin from './userLogin';
+const pages = ['Reload', 'About'];
 const settings = ['Account', 'Saved Patches', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -93,7 +94,7 @@ const ResponsiveAppBar = () => {
           >
             crypTones
           </Typography>
-          
+          <UserLogin/>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -105,7 +106,7 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-          <FormControlLabel control={<Switch defaultChecked />} label="Easy Mode" />
+    
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
