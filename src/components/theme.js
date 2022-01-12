@@ -33,3 +33,79 @@ const cryptonesTheme = createTheme({
   );
 
 export default cryptonesTheme
+
+/* 
+const cryptonesTheme = createTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      main: '#9e988b',
+    },
+    secondary: {
+      main: '#53e6e6',
+    },
+    background: {
+      default: '#040000',
+      paper: '#000000',
+    },
+    success: {
+      main: '#a4f5a8',
+    },
+    error: {
+      main: '#ff1313',
+    },
+    warning: {
+      main: '#e40e12',
+    },
+    divider: 'rgba(253,147,0,0.53)',
+  },
+  typography: {
+    fontFamily: 'Audiowide',
+    fontWeightLight: 300,
+  },
+  props: {
+    MuiButton: {
+      size: 'small',
+    },
+    MuiButtonGroup: {
+      size: 'small',
+    },
+    MuiCheckbox: {
+      size: 'small',
+    },
+    MuiFab: {
+      size: 'small',
+    },
+    MuiFormControl: {
+      margin: 'dense',
+      size: 'small',
+    },
+    MuiFormHelperText: {
+      margin: 'dense',
+    },
+    MuiIconButton: {
+      size: 'small',
+    },
+    MuiInputBase: {
+      margin: 'dense',
+    },
+    MuiInputLabel: {
+      margin: 'dense',
+    },
+    MuiRadio: {
+      size: 'small',
+    },
+    MuiSwitch: {
+      size: 'small',
+    },
+    MuiTextField: {
+      margin: 'dense',
+      size: 'small',
+    },
+    MuiAppBar: {
+      color: 'transparent',
+    }
+  }
+}); */
+
+

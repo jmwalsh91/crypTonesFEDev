@@ -28,12 +28,12 @@ export default function UserLogin() {
        Log in
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
+        <DialogTitle color="primary">Sign in</DialogTitle>
+        <DialogContent color="secondary">
+          <DialogContentText color="secondary">
            If you have already created an account, please sign in.
           </DialogContentText>
-          <TextField
+          <TextField color="primary"
             autoFocus
             margin="dense"
             id="name"
@@ -42,7 +42,7 @@ export default function UserLogin() {
             fullWidth
             variant="standard"
           />
-          <TextField
+          <TextField color="primary"
             autoFocus
             margin="dense"
             id="password"
@@ -51,15 +51,15 @@ export default function UserLogin() {
             fullWidth
             variant="standard"
           />
-          <DialogContentText>
+          <DialogContentText color="primary">
               Don't have an account yet? Don't worry! Creating an account will allow you to save and recall patches. Just check the "register" box and hit submit.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Submit</Button>
-            <FormGroup>
-                <FormControlLabel control={<Checkbox defaultChecked />} label="Create new account" />
+            <FormGroup color="primary">
+                <FormControlLabel control={<Checkbox defaultChecked />} label="Create new account" color="secondary"/>
                 <FormControlLabel disabled control={<Checkbox />}   label="Register new account?" />
             </FormGroup>
         </DialogActions>

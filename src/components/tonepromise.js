@@ -11,7 +11,7 @@ import * as Tone from 'tone'
    
         function ElementLi(props) {
                 return(
-                    <List>
+                    <List >
                         {notes.map((note, i) => {
                         return(
                         <li key={note + i}>{note}</li>
