@@ -1,6 +1,6 @@
 
 import './App.css';
-import { Button, Container, Typography} from '@material-ui/core'
+import { Container} from '@mui/material'
 import { ThemeProvider } from '@mui/material';
 import cryptonesTheme from './components/theme'
 /* import {Nav} from "./components/nav"

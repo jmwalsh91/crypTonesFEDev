@@ -36,11 +36,7 @@
     transform: rotate(360deg);
   }
 }
-/*  .navBar {
-  display: grid;
-  grid-template-columns: 4;
-  grid-template-rows: 1;
-}  */
+
 
 #introCard {
   margin: 0 auto;

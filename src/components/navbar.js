@@ -134,7 +134,7 @@ const ResponsiveAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography color="primary" textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>

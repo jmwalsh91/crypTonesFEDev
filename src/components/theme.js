@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material'
 
-const cryptonesTheme = createTheme({
+/* const cryptonesTheme = createTheme({
     palette: {
         type: 'light',
         primary: {
@@ -31,18 +31,20 @@ const cryptonesTheme = createTheme({
       },
     }
   );
+ */
 
-export default cryptonesTheme
+////////////FIGURE OUT ONBLUR OR CONTRAST
 
-/* 
 const cryptonesTheme = createTheme({
   palette: {
     type: 'dark',
     primary: {
       main: '#9e988b',
+      contrastText: 'rgba(247,236,226,0.87)',
     },
     secondary: {
       main: '#53e6e6',
+      contrastText: 'rgba(247,236,226,0.87)',
     },
     background: {
       default: '#040000',
@@ -62,6 +64,17 @@ const cryptonesTheme = createTheme({
   typography: {
     fontFamily: 'Audiowide',
     fontWeightLight: 300,
+    h1: {
+      fontFamily: 'Audiowide',
+      color: '#9e988b'
+    },
+    body1: {
+      color: '#9e988b',
+    },
+    body2: {
+      color:  '#53e6e6',
+    }
+
   },
   props: {
     MuiButton: {
@@ -79,9 +92,13 @@ const cryptonesTheme = createTheme({
     MuiFormControl: {
       margin: 'dense',
       size: 'small',
+      color: {
+        contrast: 'rgb(110, 106, 97)'
+      }
     },
     MuiFormHelperText: {
       margin: 'dense',
+      color: '#040000'
     },
     MuiIconButton: {
       size: 'small',
@@ -91,6 +108,7 @@ const cryptonesTheme = createTheme({
     },
     MuiInputLabel: {
       margin: 'dense',
+      color: '#53e6e6',
     },
     MuiRadio: {
       size: 'small',
@@ -101,11 +119,25 @@ const cryptonesTheme = createTheme({
     MuiTextField: {
       margin: 'dense',
       size: 'small',
+      bgColor: '#9e988b'
+    },
+    
+    MuiFormLabel: {
+      color: '#9e988b'
     },
     MuiAppBar: {
-      color: 'transparent',
+      bgColor: 'transparent',
     }
   }
-}); */
+}); 
 
 
+export default cryptonesTheme
+
+/* 
+
+<label class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary Mui-required css-xhznko-MuiFormLabel-root-MuiInputLabel-root" data-shrink="false" for="name" id="name-label">Email Address<span aria-hidden="true" class="MuiInputLabel-asterisk MuiFormLabel-asterisk css-18jith6-MuiFormLabel-asterisk"> *</span></label>
+
+<label class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary Mui-focused Mui-required css-1ybj8yq-MuiFormLabel-root-MuiInputLabel-root" data-shrink="true" for="name" id="name-label">Email Address<span aria-hidden="true" class="MuiInputLabel-asterisk MuiFormLabel-asterisk css-18jith6-MuiFormLabel-asterisk"> *</span></label>
+
+ */

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import { IconButton, Paper, ButtonGroup, List } from  '@mui/material'
+import { IconButton, Paper, ButtonGroup, List, Typography } from  '@mui/material'
 import { Pause , Stop, PlayArrow, MusicNote } from '@mui/icons-material'
 import * as Tone from 'tone'
  
@@ -12,12 +12,14 @@ import * as Tone from 'tone'
         function ElementLi(props) {
                 return(
                     <List >
+                        <Typography variant="body1" color="primary">
                         {notes.map((note, i) => {
                         return(
                         <li key={note + i}>{note}</li>
                     
                         )})
                     }
+                    </Typography>
                     </List>
                 )}
         
