@@ -1,3 +1,4 @@
+///this is with props, functional component
 import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts'
 
@@ -10,18 +11,22 @@ export default function ApexChart(props) {
         let chartParams = {
         
             series: [{
+                name: "Desktops",
                 data: props.data
             }],
             options: {
             chart: {
                 height: 350,
-                type: 'candlestick',
+                type: 'line',
                 zoom: {
                 enabled: false
                 }
             },
             dataLabels: {
                 enabled: false
+            },
+            stroke: {
+                curve: 'stepline'
             },
             title: {
                 text: 'BTC PRICE',
@@ -30,22 +35,14 @@ export default function ApexChart(props) {
             markers: {
                 strokeColors: '#08c9c9'
             },
-            plotOptions: {
-                candlestick: {
-                  colors: {
-                    upward: '#53e6e6',
-                    downward: 'rgba(253,147,0,0.73)'
-                  }
-                }
-            },
             grid: {
                 row: {
-                    colors: ['transparent', 'transparent'], // takes an array which will be repeated on columns
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
                     opacity: 0.5
                     },
                 },
                 xaxis: {
-                    type: 'datetime'
+                    categories: [],
                 }
                 },
             
@@ -54,7 +51,7 @@ export default function ApexChart(props) {
           return (
         
       <div id="chart">
-  <ReactApexChart options={chartParams.options} series={chartParams.series} type="candlestick" height={350} />
+  <ReactApexChart options={chartParams.options} series={chartParams.series} type="line" height={350} />
   {console.log(chartParams.series)}
 </div>);
         }
