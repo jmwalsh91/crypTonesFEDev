@@ -20,26 +20,21 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 import { Typography } from '@mui/material';
 import axios from 'axios'
+import { useState, useRef } from "react"
+
 
 export default function UserLogin() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+/* 
+Eventually have user confirm pass when registering, setting state and re-rendering dialog modal with text prompting user to confirm password. 
+  const [isRegister, setIsRegister] = React.useState(false) */
+  
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null)
 
-  const axiosUser = axios.create({
-    baseURL: 'http://127.0.0.1:4000/',
-    timeout: 10000,
-  });
   const handleClickOpen = () => {
     setOpen(true);
   };
-  function registerUser() { 
-  axiosUser.put('/crypto/user')
-        .then(response => {
-           
-        })
-        return () => {
-           
-        }
-      }
   const handleClose = () => {
     setOpen(false);
   };
@@ -48,14 +43,42 @@ export default function UserLogin() {
     console.log('clicked')
     registerUser()
   }
-
-
   const handleClickSignIn = () => {
-    console.log('clicked')
+    console.log('sign in clicked')
+    loginUser()
   }
-  const handleSubmit = () => {
-  
+
+
+  const axiosUser = axios.create({
+    baseURL: 'http://127.0.0.1:4000/user',
+    timeout: 10000
+  });
+
+  //REMEMBER: HANDLE CLOSE!!
+  function registerUser() { 
+    let email = emailRef.current.value
+    let password = passwordRef.current.value
+    console.log(email)
+    console.log(password)
+        
+    axiosUser.post('/register', {email, password})
+    .then((response) => {
+      console.log('oh hi' + response)
+    })
+    .catch(err => console.log(err))     
   }
+      
+  function loginUser() {       
+    axiosUser.post('/login', {
+      username: emailRef.current.value,
+      password: passwordRef.current.value
+    })
+    .then((res) => console.log(res))
+    .catch(err => console.log(err))     
+  }
+ //REMEMBER: HANDLE CLOSE!!
+ 
+
 
 
 
@@ -87,9 +110,8 @@ export default function UserLogin() {
             variant="filled"
             required={true}
            placeholder="can you see me"
-            
+           inputRef={emailRef}
           />
-       
           <TextField
             sx={{
               input: { color: 'black' },
@@ -102,9 +124,10 @@ export default function UserLogin() {
             type="password"
             fullWidth
             variant="filled"
+            inputRef={passwordRef}
           />
         <DialogContentText color="primary">
-              Don't have an account yet? Don't worry! Creating an account will allow you to save and recall patches. Just check the "register" box and hit submit.
+              Don't have an account yet? Don't worry! Creating an account will allow you to save and recall patches. Just enter your preferred credentials and hit "register" below.
           </DialogContentText>
           
         </DialogContent>
@@ -114,12 +137,7 @@ export default function UserLogin() {
            justifyContent: 'space-between'
           
             }}>
-        {/* <FormGroup color="primary">
-                <FormControlLabel control={<Checkbox defaultUnchecked />} label="Create new account" color="secondary.main"   FormLabel={{color: 'secondary'}}
-/>                          <FormControlLabel control={<Switch defaultChecked />} label="Easy Mode" />
-
-                
-            </FormGroup> */}
+        
           <Button variant="outlined" onClick={handleClose}>Cancel</Button>
           <IconButton
               size="large"
@@ -132,7 +150,7 @@ export default function UserLogin() {
               //make sure to handle close!
             >
               <PersonAddIcon />
-              <Typography variant="body2">Register</Typography>
+              <Typography variant="body2"> Register</Typography>
 
             </IconButton>
           <IconButton
@@ -146,7 +164,7 @@ export default function UserLogin() {
               //make sure to handle close!!
             >
               <LoginIcon />
-              <Typography variant="body2">Sign In</Typography>
+              <Typography variant="body2">  Sign In</Typography>
 
             </IconButton>
           
