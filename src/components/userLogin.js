@@ -20,11 +20,12 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 import { Typography } from '@mui/material';
 import axios from 'axios'
-import { useState, useRef } from "react"
-
+import { useState, useRef, useEffect, useContext } from "react"
+import UserContext from './userContext';
 
 export default function UserLogin() {
   const [open, setOpen] = useState(false);
+  const { user, setUser } = useContext(UserContext)
 /* 
 Eventually have user confirm pass when registering, setting state and re-rendering dialog modal with text prompting user to confirm password. 
   const [isRegister, setIsRegister] = React.useState(false) */
@@ -47,6 +48,12 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     console.log('sign in clicked')
     loginUser()
   }
+
+
+  
+  useEffect(() => {
+    console.log(UserContext)
+  })
 
 
   const axiosUser = axios.create({
@@ -73,12 +80,26 @@ Eventually have user confirm pass when registering, setting state and re-renderi
       username: emailRef.current.value,
       password: passwordRef.current.value
     })
-    .then((res) => console.log(res))
+    .then(async res => {
+      if (res.status !== 200) {
+         console.log('no bueno') 
+      } else if (res.status === 200) {
+       
+
+       
+      console.log(res)
+      handleClose()
+      return setUser(res.data.currentUser) 
+   
+       
+      } else {
+        console.log('oopsies')
+      }
+    })
     .catch(err => console.log(err))     
-  }
+  }    
  //REMEMBER: HANDLE CLOSE!!
  
-
 
 
 

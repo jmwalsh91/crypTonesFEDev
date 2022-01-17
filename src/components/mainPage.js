@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect, useContext} from 'react'
+
 import Typography from '@mui/material/Typography'
 import { Button, Container } from '@mui/material'
 import ResponsiveAppBar from './navbar';
@@ -8,19 +9,19 @@ import { Card, Box } from '@mui/material';
 import {Synth} from 'tone'
 import { DataAV } from './dataAV';
 /* import { useTheme } from '@mui/styles'; */
-
+import UserContext from './userContext';
 
 export const MainPage = () => {
-   /*  const theme = useTheme() */
-//Icons: settingsINput, showchart, play pause etc. autograph, addchart. SAVE. reload: replay,  about: info, sign in: login
-
+    const [user, setUser] = useState()
+    const value = { user, setUser}
     return (
         <Container grid rowspacing={6}>
             <Typography variant="h1" gutterBottom={true}>crypTones</Typography>
-            <ResponsiveAppBar gutterBottom/>
-            <DataAV/>
+            <UserContext.Provider value={ value }>
+                <ResponsiveAppBar gutterBottom />
+                <DataAV/>
+            </UserContext.Provider>
         </Container>
         
     )
     }
-

@@ -6,12 +6,17 @@ import axios from 'axios'
 import _ from 'lodash'
 import { AutoFixHighSharp } from '@mui/icons-material'
 import { render } from '@testing-library/react'
+import { Typography } from '@mui/material'
 
 export const DataAV = (props) => {
     
     const [dataOHLC, setDataOHLC] = useState([])
-    const [volArr, setVolArr] = useState([0])
-    const [closeArray, setCloseArray] = useState([]) 
+    const [volArr, setVolArr] = useState([])
+    let dataIsReturned
+
+    /* const [closeArray, setCloseArray] = useState([])  */
+
+
     /* const dataArr = 
         [[
             1642390800000,
@@ -66,16 +71,17 @@ export const DataAV = (props) => {
             setVolArr(response.data.volArr)
             setDataOHLC(response.data.resFormatted)
             console.log(volArr + dataOHLC)
-           
+            return {dataOHLC, volArr}
         })
-        return (response) => {
+        /* return (response) => {
             console.log(volArr)
             console.log(dataOHLC)
+            
             return {dataOHLC, volArr}
             
            
             //cleanup function here
-        }
+        } */
     }, []
     )
     
@@ -83,7 +89,9 @@ export const DataAV = (props) => {
         <div id="dataAv">
           {/*   <DataContext.Provider value={dataOHLC}> */}
                 <ApexChart data={dataOHLC}/>
-                <PlayData/>
+                {dataOHLC.length > 2 ?
+                <PlayData data={dataOHLC}/> 
+                : <Typography variant="h1"> loading </Typography>}
             {/* </DataContext.Provider> */}
         </div>
     )

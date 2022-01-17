@@ -14,6 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import UserLogin from './userLogin';
+import UserLogout from './userLogout';
+import { useContext } from 'react';
+import UserContext from './userContext';
+
 const pages = ['Reload', 'About'];
 const settings = ['Account', 'Saved Patches', 'Logout'];
 
@@ -35,11 +39,13 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  let user = useContext(UserContext)
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          
+          {/* logo */}
           <Typography
             variant="h6"
             noWrap
@@ -48,6 +54,7 @@ const ResponsiveAppBar = () => {
           >
           crypTones
           </Typography>
+          {/* end logo*/}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -60,7 +67,7 @@ const ResponsiveAppBar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <FormControlLabel control={<Switch defaultChecked />} label="Easy Mode" />
+            
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -94,7 +101,17 @@ const ResponsiveAppBar = () => {
           >
             crypTones
           </Typography>
-          <UserLogin/>
+          
+          
+          
+          {console.log(user)}
+          
+          
+          {(!user.user)
+          ? <UserLogin/> : <UserLogout/>}
+          
+          {/* <UserLogin/> */}
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -106,16 +123,18 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-    
+           {(!user.user)?
+           <Typography variant="h6">no user</Typography>
+           :  
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                {//useRef here for avatar
+                }
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            
-  
-
+              
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -139,6 +158,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
+            }
         </Toolbar>
       </Container>
     </AppBar>
