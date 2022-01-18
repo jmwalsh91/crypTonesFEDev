@@ -17,15 +17,16 @@ import UserLogin from './userLogin';
 import UserLogout from './userLogout';
 import { useContext, useState } from 'react';
 import { UserContext } from './userContext';
+import ShowPatch from './showPatch';
 
-const pages = ['Reload', 'About'];
-const settings = ['Account', 'Saved Patches', 'Logout'];
+
 
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const pages = ['Reload', 'About'];
+  const settings = ['Account', <ShowPatch/> , 'Logout'];
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
