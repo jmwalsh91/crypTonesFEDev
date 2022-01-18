@@ -15,11 +15,12 @@ import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import UserLogin from './userLogin';
 import UserLogout from './userLogout';
-import { useContext } from 'react';
-import UserContext from './userContext';
+import { useContext, useState } from 'react';
+import { UserContext } from './userContext';
 
 const pages = ['Reload', 'About'];
 const settings = ['Account', 'Saved Patches', 'Logout'];
+
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,7 +40,8 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  let user = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
+  console.log(user.username)
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -104,10 +106,10 @@ const ResponsiveAppBar = () => {
           
           
           
-          {console.log(user)}
+          {console.log(UserContext)}
           
           
-          {(!user.user)
+          {(!user.username)
           ? <UserLogin/> : <UserLogout/>}
           
           {/* <UserLogin/> */}
@@ -123,7 +125,8 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-           {(!user.user)?
+          {/* conditional start */}
+           {(!user.username)?
            <Typography variant="h6">no user</Typography>
            :  
           <Box sx={{ flexGrow: 0 }}>
@@ -156,6 +159,7 @@ const ResponsiveAppBar = () => {
                   <Typography color="primary" textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              {/* conditional end */}
             </Menu>
           </Box>
             }

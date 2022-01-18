@@ -21,11 +21,14 @@ import LoginIcon from '@mui/icons-material/Login';
 import { Typography } from '@mui/material';
 import axios from 'axios'
 import { useState, useRef, useEffect, useContext } from "react"
-import UserContext from './userContext';
+import { UserContext } from './userContext';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 export default function UserLogin() {
-  const [open, setOpen] = useState(false);
+  const [ open, setOpen ] = useState(false);
   const { user, setUser } = useContext(UserContext)
+  console.log(user)
+  
 /* 
 Eventually have user confirm pass when registering, setting state and re-rendering dialog modal with text prompting user to confirm password. 
   const [isRegister, setIsRegister] = React.useState(false) */
@@ -81,15 +84,15 @@ Eventually have user confirm pass when registering, setting state and re-renderi
       password: passwordRef.current.value
     })
     .then(async res => {
+      /* const { user, setUser } = useContext(UserContext) */
       if (res.status !== 200) {
          console.log('no bueno') 
       } else if (res.status === 200) {
+      console.log(res.data.currentUser)
+     /*  let resUsername = res.data.currentUser.username */
        
-
-       
-      console.log(res)
       handleClose()
-      return setUser(res.data.currentUser) 
+      return setUser(res.data.currentUser)
    
        
       } else {

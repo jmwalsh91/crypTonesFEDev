@@ -1,14 +1,15 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import { IconButton, Paper, ButtonGroup, List, Typography } from  '@mui/material'
 import { Pause , Stop, PlayArrow, MusicNote } from '@mui/icons-material'
 import * as Tone from 'tone'
- 
-
+ import SavePatchButton from './saveButton'
+import { UserContext } from './userContext'
     export default function PlayData(props) {
+
         const [toneState, setToneState] = useState('')
         const [hasRunState, setHasRunState] = useState(false)
         const [notes, setNotes] = useState([])
-        
+     
             let difArray = []
 
             function genRelArr () {
@@ -32,28 +33,34 @@ import * as Tone from 'tone'
             /* hasRunState === false ?  */
           
         },[])
+        let currentNote 
+        /* const notelist =
+            <List sx={{display: "inline"}}>
+                {notes.map((note, i) => {
+                    return(<li>{note}, </li>)
+                })}
+                {currentNote}
+            </List> 
+             */
 
     function ElementLi(props) {
             return(
-                <List >
+                <div>
                     <Typography variant="body1" color="primary">
                         crypTones v1.0 uses the difference between sequential close values to determine the frequency values used in rendering audio. The differences are: 
-                  {/*   {
-                    notes.map((note, i) => {
-                    return(
-                    <li key={note + i}>{note}</li>
-                
-                    )})
-                } */}
                 </Typography>
-                </List>
+                
+              {/*   { notelist } */}
+                
+                
+                </div>
             )}
     
     const now = Tone.now() 
     
-/*  use for volume slider!!
-    const vol = new Tone.Volume(-12).toDestination();
-    const osc = new Tone.Oscillator().connect(vol).start(); */
+    
+    /* const vol = new Tone.Volume(-12).toDestination();
+    const osc = new Tone.Oscillator().connect(vol).start();  */
     const filter = new Tone.Filter(800, "lowpass").toDestination();
     filter.frequency.rampTo(8000, 100);
     let distort = new Tone.Distortion(2).connect(filter)
@@ -97,6 +104,7 @@ import * as Tone from 'tone'
             synth.triggerAttackRelease(note, '8n', time)
             
             console.log(note) 
+            currentNote = note
             
         }, notes).start(0)
         setHasRunState(true)
@@ -111,25 +119,31 @@ import * as Tone from 'tone'
     Tone.Transport.stop(now)
     Tone.Transport.clear(this)
     }
+
+    const handleClickOpenSave = () => {
+
+    }
     return (
         <Paper variant="outlined" >
             <Paper elevation={2}>
                 <ElementLi/>
             </Paper>
-            <ButtonGroup>
-                <IconButton aria-label="MusicNote" color="secondary" size="large" onClick={handleClickNote}>
-                <MusicNote/>
-                </IconButton>
-                <IconButton aria-label="PlayArrow" color="secondary" size="large" onClick={handleClickPlay}>
-                    <PlayArrow/>
-                </IconButton>
-                <IconButton aria-label="Pause" color="secondary" size="large">
-                    <Pause/>
-                </IconButton>
-                <IconButton aria-label="Stop" color="secondary" size="large" onClick={handleClickStop}>
-                    <Stop/>
-                </IconButton>
-            </ButtonGroup>
+                <ButtonGroup size="large">
+                    
+                    <IconButton aria-label="MusicNote" color="secondary" size="large" onClick={handleClickNote}>
+                    <MusicNote/>
+                    </IconButton>
+                    <IconButton aria-label="PlayArrow" color="secondary" size="large" onClick={handleClickPlay}>
+                        <PlayArrow/>
+                    </IconButton>
+                    <IconButton aria-label="Pause" color="secondary" size="large">
+                        <Pause/>
+                    </IconButton>
+                    <IconButton aria-label="Stop" color="secondary" size="large" onClick={handleClickStop}>
+                        <Stop/>
+                    </IconButton>
+                </ButtonGroup>
+                <SavePatchButton  onClick={handleClickOpenSave}/>
         </Paper>
 )
 }

@@ -7,12 +7,12 @@ import _ from 'lodash'
 import { AutoFixHighSharp } from '@mui/icons-material'
 import { render } from '@testing-library/react'
 import { Typography } from '@mui/material'
-
+import { LinearProgress } from '@mui/material'
 export const DataAV = (props) => {
     
     const [dataOHLC, setDataOHLC] = useState([])
     const [volArr, setVolArr] = useState([])
-    let dataIsReturned
+   
 
     /* const [closeArray, setCloseArray] = useState([])  */
 
@@ -91,7 +91,8 @@ export const DataAV = (props) => {
                 <ApexChart data={dataOHLC}/>
                 {dataOHLC.length > 2 ?
                 <PlayData data={dataOHLC}/> 
-                : <Typography variant="h1"> loading </Typography>}
+                : <LinearProgress/>
+            }
             {/* </DataContext.Provider> */}
         </div>
     )

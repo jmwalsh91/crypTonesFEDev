@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext, useMemo} from 'react'
 
 import Typography from '@mui/material/Typography'
 import { Button, Container } from '@mui/material'
@@ -9,18 +9,21 @@ import { Card, Box } from '@mui/material';
 import {Synth} from 'tone'
 import { DataAV } from './dataAV';
 /* import { useTheme } from '@mui/styles'; */
-import UserContext from './userContext';
+import { UserContext, UserContextProvider } from './userContext';
 
 export const MainPage = () => {
-    const [user, setUser] = useState()
-    const value = { user, setUser}
+   
+    
+    useEffect(() => {
+        console.log(UserContext)
+    })
     return (
         <Container grid rowspacing={6}>
             <Typography variant="h1" gutterBottom={true}>crypTones</Typography>
-            <UserContext.Provider value={ value }>
+            <UserContextProvider>
                 <ResponsiveAppBar gutterBottom />
                 <DataAV/>
-            </UserContext.Provider>
+            </UserContextProvider>
         </Container>
         
     )

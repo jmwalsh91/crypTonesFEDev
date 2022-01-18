@@ -21,11 +21,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import { Typography } from '@mui/material';
 import axios from 'axios'
 import { useState, useRef, useEffect, useContext } from "react"
-import UserContext from './userContext';
+import { UserContext, initUser } from './userContext';
 
 export default function UserLogout() {
   const [open, setOpen] = useState(false);
   const { user, setUser } = useContext(UserContext)
+
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -55,7 +57,7 @@ export default function UserLogout() {
     console.log(response.status)
     if (response.status === 200) {
       console.log(response.status)
-      setUser(null)
+      return setUser(initUser)
     }
   }).catch(error => {
       console.log(error)

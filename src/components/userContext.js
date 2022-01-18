@@ -1,23 +1,54 @@
 import React from "react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo, useContext } from "react";
 import { createContext } from "react";
 
 
 
+const initUser = {
+        user: {
+            username: 'joe',
+            savedPatches: []
+        }/* ,
+        setUser: () => ({}) */
+    }
+
+
+const UserContext = React.createContext(initUser)/* {
+        user: {
+            username: 'joe',
+            savedPatches: []
+        },
+        setUser: () => ({})
+    }) */
+
+
+
+
+const UserContextProvider = ({children}) => {
+    /* const [user, setUser] = useState(initUser)
+    const value = useMemo(
+        () => ({ user, setUser }), 
+        [user]
+        
+      ); */
+      const [user, setUser] = useState(UserContext)
+    
+      return(
+          <UserContext.Provider value={{user, setUser}}>
+              {children}
+          </UserContext.Provider>
+      )
+    }
+
+
+
 /* 
-export const currentUser = {
-    username: 'none',
-    isLoggedIn: false,
-    savedPatches: []
-} */
-
-
 const UserContext = React.createContext({
     user: null,
     setUser: () => {}
- })
+ }) */
 
- export default UserContext
+ export { UserContext, UserContextProvider, initUser }
 /* const [currUser, setCurrUser] = useState(currentUser) */
 /* 
 export const UserContextProvider = ({ children }) => {
