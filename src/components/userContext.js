@@ -6,7 +6,8 @@ import { createContext } from "react";
 
 const initUser = {
         user: {
-            username: 'joe',
+            username: '',
+            id: 0,
             savedPatches: []
         }/* ,
         setUser: () => ({}) */

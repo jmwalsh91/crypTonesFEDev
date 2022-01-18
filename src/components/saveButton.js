@@ -24,7 +24,7 @@ import IconButton from '@mui/material/IconButton';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 import { Typography } from '@mui/material';
-
+import PatchSuccess from './successAlert';
 import axios from 'axios'
 import { useState, useRef, useEffect, useContext } from "react"
 import { UserContext, UserContextProvider } from './userContext';
@@ -32,6 +32,7 @@ import { UserContext, UserContextProvider } from './userContext';
 export default function SavePatchButton(props) {
   const [open, setOpen] = useState(false);
   const { user, setUser } = useContext(UserContext)
+  const [success, setSuccess] = useState()
   const chartData = props.chartData
   const noteData = props.noteData 
   console.log(chartData)
@@ -49,6 +50,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     setOpen(true);
   };
   const handleClose = () => {
+    setSuccess(null)
     setOpen(false);
   };
   
@@ -70,12 +72,20 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     axiosUserSavePatch.post('/patch/save', {
         patchName: patchNameRef.current.value,
         noteData : noteData,
-        chartData : chartData
+        chartData : chartData, 
+        patchOwner : user.id
     })
-    .then((response) => {
+    .then((response, err) => {
+        if (!err) { 
+        console.log(user)
+        console.log('below is response data')
         console.log(response.data)
-        //popup
-        handleClose()
+        let updatePatches = response.data
+        setUser(prev => {
+            return { ...prev, savedPatches: updatePatches}
+        })
+        setSuccess(true)
+        /* handleClose() */}
     })
     .catch(err => console.log(err))     
   }
@@ -98,6 +108,9 @@ Eventually have user confirm pass when registering, setting state and re-renderi
       </Button>
       <Dialog open={open} onClose={handleClose} elevation={24}>
         <Paper variant="elevation" elevation={24}>
+        {success === true ?
+        <PatchSuccess onClose={handleClose}/>
+        : null}
         <DialogTitle color="primary">Save current patch</DialogTitle>
         <DialogContent color="secondary">
           <DialogContentText color="secondary">
