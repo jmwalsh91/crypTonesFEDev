@@ -55,7 +55,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
 
   
   useEffect(() => {
-    console.log(UserContext)
+    console.log(user)
   })
 
 

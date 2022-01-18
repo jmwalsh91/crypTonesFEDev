@@ -106,13 +106,12 @@ const ResponsiveAppBar = () => {
           
           
           
-          {console.log(UserContext)}
           
           
           {(!user.username)
           ? <UserLogin/> : <UserLogout/>}
           
-          {/* <UserLogin/> */}
+          
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

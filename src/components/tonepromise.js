@@ -143,7 +143,7 @@ import { UserContext } from './userContext'
                         <Stop/>
                     </IconButton>
                 </ButtonGroup>
-                <SavePatchButton  onClick={handleClickOpenSave}/>
+                <SavePatchButton  chartData={props.data} noteData={notes} onClick={handleClickOpenSave}/>
         </Paper>
 )
 }

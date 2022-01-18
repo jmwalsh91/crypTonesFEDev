@@ -29,9 +29,13 @@ import axios from 'axios'
 import { useState, useRef, useEffect, useContext } from "react"
 import { UserContext, UserContextProvider } from './userContext';
 
-export default function SavePatchButton() {
+export default function SavePatchButton(props) {
   const [open, setOpen] = useState(false);
   const { user, setUser } = useContext(UserContext)
+  const chartData = props.chartData
+  const noteData = props.noteData 
+  console.log(chartData)
+  console.log(noteData)
   console.log(user)
   /* const [user, setUser] = useContext(UserContext) */
 /* 
@@ -54,10 +58,6 @@ Eventually have user confirm pass when registering, setting state and re-renderi
   }
 
   
-  useEffect(() => {
-    console.log(UserContext)
-  })
-
 
   const axiosUserSavePatch = axios.create({
     baseURL: 'http://127.0.0.1:4000/user/',
@@ -65,15 +65,17 @@ Eventually have user confirm pass when registering, setting state and re-renderi
   });
 
   //REMEMBER: HANDLE CLOSE!!
-  function savePatch() { 
-    /* console.log(user.user) */
-        
-    axiosUserSavePatch.post('/patch', {
-        /* username: user.user, */
-        patchName: patchNameRef.current.value
+  function savePatch() {    
+      console.log(typeof patchNameRef.current.value) 
+    axiosUserSavePatch.post('/patch/save', {
+        patchName: patchNameRef.current.value,
+        noteData : noteData,
+        chartData : chartData
     })
     .then((response) => {
-      console.log('oh hi' + response)
+        console.log(response.data)
+        //popup
+        handleClose()
     })
     .catch(err => console.log(err))     
   }
