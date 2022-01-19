@@ -59,7 +59,7 @@ export const DataAV = (props) => {
    /*  const DataContext = React.createContext(dataOHLC) */
 
     const axiosDataAV = axios.create({
-        baseURL: 'http://127.0.0.1:4000/',
+        baseURL: 'https://cryptonesbackend1.herokuapp.com/',
         timeout: 10000,
       });
     

@@ -44,7 +44,7 @@ export default function UserLogout() {
 
 
   const axiosUser = axios.create({
-    baseURL: 'http://127.0.0.1:4000/user',
+    baseURL: 'https://cryptonesbackend1.herokuapp.com/user',
     timeout: 10000
   });
 

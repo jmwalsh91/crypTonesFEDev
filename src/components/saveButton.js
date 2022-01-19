@@ -62,7 +62,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
   
 
   const axiosUserSavePatch = axios.create({
-    baseURL: 'http://127.0.0.1:4000/user/',
+    baseURL: 'https://cryptonesbackend1.herokuapp.com/user/',
     timeout: 10000
   });
 
@@ -77,9 +77,6 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     })
     .then((response, err) => {
         if (!err) { 
-        console.log(user)
-        console.log('below is response data')
-        console.log(response.data)
         let updatePatches = response.data
         setUser(prev => {
             return { ...prev, savedPatches: updatePatches}
