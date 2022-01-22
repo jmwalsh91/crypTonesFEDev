@@ -4,12 +4,14 @@ const remoteUrl = 'https://cryptonesbackend1.herokuapp.com/'
 
 
 export const axiosDataAV = axios.create({
-        baseURL: localUrl,
+        baseURL: remoteUrl,
         timeout: 10000,
       });
     
 
 export const axiosUser = axios.create({
-    baseURL: localUrl + 'user',
+    baseURL: remoteUrl + 'user',
     timeout: 10000
   });
+
+  

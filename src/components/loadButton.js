@@ -13,7 +13,7 @@ console.log(props)
               aria-haspopup="true"
               /* onClick={handleClickload} */
               color="secondary"
-              label="Register"
+              label="Load"
               //make sure to handle close!
             >
               <DoubleArrowIcon />

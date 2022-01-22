@@ -21,7 +21,7 @@ export default function PatchTable(props) {
 
   const handleCellEditCommit = (params, event) => {
   
-      event.defaultMuiPrevented = false;
+      event.defaultMuiPrevented = true;
       console.log('CELL EVENT HIT') // https://mui.com/components/data-grid/events/#disabling-the-default-behavior
       const model = apiRef.current.getEditRowsModel();
       const { value } = model[params.id].patchName;
@@ -49,7 +49,7 @@ export default function PatchTable(props) {
         checkboxSelection={false}
         
         /* disableSelectionOnClick */
-        /* onCellEditCommit={handleCellEditCommit} */
+        onCellEditCommit={handleCellEditCommit}
         
         />
         
