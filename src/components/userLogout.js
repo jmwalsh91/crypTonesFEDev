@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { axiosUser } from './axiosinstances';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -27,8 +28,6 @@ export default function UserLogout() {
   const [open, setOpen] = useState(false);
   const { user, setUser } = useContext(UserContext)
 
-
-
   const handleClickOpen = () => {
     setOpen(true);
     logoutUser()
@@ -37,45 +36,22 @@ export default function UserLogout() {
     setOpen(false);
   };
   
-
-
-
-
-
-
-  const axiosUser = axios.create({
-    baseURL: 'https://cryptonesbackend1.herokuapp.com/user',
-    timeout: 10000
-  });
-
   //REMEMBER: HANDLE CLOSE!!
 
   
   function logoutUser() {     
-  
-  axiosUser.post('/logout').then(response => {
-    console.log(response.status)
-    if (response.status === 200) {
+    axiosUser.post('/logout').then(response => {
       console.log(response.status)
-      return setUser(initUser)
-    }
-  }).catch(error => {
-      console.log(error)
-  })
-  }
-    /* axiosUser.post('/logout')
-     .then(res => {
-       console.log(res.data)
-       handleClose() 
-       return setUser(null) 
+      if (response.status === 200) {
+        console.log(response.status)
+        //success!
+        return setUser(initUser)
+      }
+    }).catch(error => {
+        console.log(error)
     })
-    .catch(err => console.log(err))     
-  }     */
- //REMEMBER: HANDLE CLOSE!!
+  }
  
-
-
-
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen} color="secondary">

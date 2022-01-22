@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material'
+import { checkboxClasses, createTheme } from '@mui/material'
 
 /* const cryptonesTheme = createTheme({
     palette: {
@@ -85,6 +85,7 @@ const cryptonesTheme = createTheme({
     },
     MuiCheckbox: {
       size: 'small',
+      bgColor: '#9e988b'
     },
     MuiFab: {
       size: 'small',
@@ -128,7 +129,13 @@ const cryptonesTheme = createTheme({
     MuiAppBar: {
       bgColor: 'transparent',
     }
-  }
+  },
+    MuiSwitch: {
+      switchBase: {
+        color: '#9e988b',
+        bgColor: '#53e6e6',
+      }
+    }
 }); 
 
 

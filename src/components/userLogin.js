@@ -23,6 +23,7 @@ import axios from 'axios'
 import { useState, useRef, useEffect, useContext } from "react"
 import { UserContext } from './userContext';
 import { ConstructionOutlined } from '@mui/icons-material';
+import { axiosUser } from './axiosinstances';
 
 export default function UserLogin() {
   const [ open, setOpen ] = useState(false);
@@ -58,19 +59,11 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     console.log(user)
   })
 
-
-  const axiosUser = axios.create({
-    baseURL: 'https://cryptonesbackend1.herokuapp.com/user',
-    timeout: 10000
-  });
-
   //REMEMBER: HANDLE CLOSE!!
   function registerUser() { 
     let email = emailRef.current.value
     let password = passwordRef.current.value
-    console.log(email)
-    console.log(password)
-        
+
     axiosUser.post('/register', {email, password})
     .then((response) => {
       console.log('oh hi' + response)
@@ -84,27 +77,17 @@ Eventually have user confirm pass when registering, setting state and re-renderi
       password: passwordRef.current.value
     })
     .then(async res => {
-      /* const { user, setUser } = useContext(UserContext) */
+     
       if (res.status !== 200) {
-         console.log('no bueno') 
-      } else if (res.status === 200) {
-      console.log(res.data.currentUser)
-     /*  let resUsername = res.data.currentUser.username */
-       
-      handleClose()
-      return setUser(res.data.currentUser)
-   
-       
-      } else {
-        console.log('oopsies')
+        console.log('no bueno')
       }
+      if (res.status === 200) {
+        handleClose()
+        return setUser(res.data.currentUser)
+      } 
     })
     .catch(err => console.log(err))     
   }    
- //REMEMBER: HANDLE CLOSE!!
- 
-
-
 
   return (
     <div>

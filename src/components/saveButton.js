@@ -4,6 +4,7 @@
 //from tone, need dataOHLC and notes
 
 import * as React from 'react';
+import { axiosUser } from './axiosinstances';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -59,17 +60,9 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     savePatch()
   }
 
-  
-
-  const axiosUserSavePatch = axios.create({
-    baseURL: 'https://cryptonesbackend1.herokuapp.com/user/',
-    timeout: 10000
-  });
-
   //REMEMBER: HANDLE CLOSE!!
   function savePatch() {    
-      console.log(typeof patchNameRef.current.value) 
-    axiosUserSavePatch.post('/patch/save', {
+    axiosUser.post('/patch/save', {
         patchName: patchNameRef.current.value,
         noteData : noteData,
         chartData : chartData, 
@@ -82,7 +75,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
             return { ...prev, savedPatches: updatePatches}
         })
         setSuccess(true)
-        /* handleClose() */}
+        /* handleClose() with timeout and fade */}
     })
     .catch(err => console.log(err))     
   }
@@ -96,11 +89,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     <div>
       <Button variant="outlined" 
       onClick={handleClickOpen}
-      color="secondary"
-      /* sx={{
-          color: "primary",
-        bgColor: "secondary"
-        }} */>
+      color="secondary">
        Save patch
       </Button>
       <Dialog open={open} onClose={handleClose} elevation={24}>
