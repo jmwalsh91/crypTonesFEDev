@@ -62,7 +62,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
 
   //REMEMBER: HANDLE CLOSE!!
   function savePatch() {    
-    axiosUser.put('/patch/save', {
+    axiosUser.post('/patch/save', {
         patchName: patchNameRef.current.value,
         noteData : noteData,
         chartData : chartData, 

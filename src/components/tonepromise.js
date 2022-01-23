@@ -33,7 +33,29 @@ import { UserContext } from './userContext'
             /* hasRunState === false ?  */
           
         },[])
+        let currentNote 
+        /* const notelist =
+            <List sx={{display: "inline"}}>
+                {notes.map((note, i) => {
+                    return(<li>{note}, </li>)
+                })}
+                {currentNote}
+            </List> 
+             */
+
+    function ElementLi(props) {
+            return(
+                <div>
+                    <Typography variant="body1" color="primary">
+                        crypTones v1.0 uses the difference between sequential close values to determine the frequency values used in rendering audio. The differences are: 
+                </Typography>
                 
+              {/*   { notelist } */}
+                
+                
+                </div>
+            )}
+    
     const now = Tone.now() 
     
     
@@ -82,7 +104,7 @@ import { UserContext } from './userContext'
             synth.triggerAttackRelease(note, '8n', time)
             
             console.log(note) 
-            let currentNote = note
+            currentNote = note
             
         }, notes).start(0)
         setHasRunState(true)
@@ -104,9 +126,7 @@ import { UserContext } from './userContext'
     return (
         <Paper variant="outlined" >
             <Paper elevation={2}>
-            <Typography variant="body1" color="primary">
-                        crypTones v1.0 uses the difference between sequential close values to determine the frequency values used in rendering audio.
-                </Typography>
+                <ElementLi/>
             </Paper>
                 <ButtonGroup size="large">
                     
