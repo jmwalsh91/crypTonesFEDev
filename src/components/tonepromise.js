@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useLayoutEffect} from 'react'
 import { IconButton, Paper, ButtonGroup, List, Typography } from  '@mui/material'
 import { Pause , Stop, PlayArrow, MusicNote } from '@mui/icons-material'
 import * as Tone from 'tone'
@@ -30,8 +30,6 @@ import { UserContext } from './userContext'
         }
         useEffect(() => {
             hasRunState === false ? genRelArr() : console.log('Im not gonna do it! im not gonna run genRelArr! No Way!')
-            /* hasRunState === false ?  */
-          
         },[])
                 
     const now = Tone.now() 
@@ -58,7 +56,7 @@ import { UserContext } from './userContext'
             console.log('ready to go!')
         }
     }
-    useEffect(() => {
+    useLayoutEffect(() => {
         console.log('effect hit and tone state is ' + toneState)
         initTone()
     })
@@ -79,7 +77,7 @@ import { UserContext } from './userContext'
     const handleClickPlay = () => {
     if (hasRunState === false) {
         const ArraySeq = new Tone.Sequence((time, note) => {
-            synth.triggerAttackRelease(note, '8n', time)
+            synth.triggerAttackRelease(note, '16n', time)
             
             console.log(note) 
             let currentNote = note
@@ -105,7 +103,7 @@ import { UserContext } from './userContext'
         <Paper variant="outlined" >
             <Paper elevation={2}>
             <Typography variant="body1" color="primary">
-                        crypTones v1.0 uses the difference between sequential close values to determine the frequency values used in rendering audio.
+                        crypTones v1.0 uses the difference between sequential close values to determine the frequency values used in rendering audio.This website is in development, and more features are on their way. Click the "play" button below to begin, and "stop" button to stop the sequence.
                 </Typography>
             </Paper>
                 <ButtonGroup size="large">

@@ -128,7 +128,7 @@ const [loadTarget, setLoadTarget] = useState()
 
 const handleLoadClick = () => {
   console.log(apiRef)
-  /* console.log(apiRef.current.getRowModels()); */
+  console.log(apiRef.current.getRowModels());
  /*  const getName =(() => {}) */
   console.log('load clickaroo')
   //setloadtarget/getname

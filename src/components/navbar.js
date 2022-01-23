@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import UserLogin from './userLogin';
@@ -26,7 +27,7 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const pages = ['Reload', 'About'];
-  const settings = ['Account', <ShowPatchList/> , 'Logout'];
+  const settings = ['Account', <ShowPatchList/> , <UserLogout size="large"/>];
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -110,7 +111,7 @@ const ResponsiveAppBar = () => {
           
           
           {(!user.username)
-          ? <UserLogin/> : <UserLogout/>}
+          ? <UserLogin variant="contain"/> : null}
           
           
 
@@ -127,14 +128,16 @@ const ResponsiveAppBar = () => {
           </Box>
           {/* conditional start */}
            {(!user.username)?
-           <Typography variant="h6">no user</Typography>
+           null
            :  
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {//useRef here for avatar
                 }
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar sx={{bgcolor: "#615c58"}} size="large">
+                  <ManageAccountsIcon/>
+                </Avatar>
               </IconButton>
             </Tooltip>
               

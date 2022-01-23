@@ -15,7 +15,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import InputLabel from '@mui/material/InputLabel';
 import Switch from '@mui/material/Switch'
 import IconButton from '@mui/material/IconButton';
-
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 import { Typography } from '@mui/material';
@@ -63,13 +63,15 @@ Eventually have user confirm pass when registering, setting state and re-renderi
   function registerUser() { 
     let email = emailRef.current.value
     let password = passwordRef.current.value
+    
 
     axiosUser.post('/register', {email, password})
     .then((response) => {
-      console.log('oh hi' + response)
+      console.log(response.body)
     })
     .catch(err => console.log(err))     
   }
+
       
   function loginUser() {       
     axiosUser.post('/login', {
@@ -77,7 +79,6 @@ Eventually have user confirm pass when registering, setting state and re-renderi
       password: passwordRef.current.value
     })
     .then(async res => {
-     
       if (res.status !== 200) {
         console.log('no bueno')
       }
@@ -92,7 +93,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen} color="secondary">
-       Log in
+       sign in
       </Button>
       <Dialog open={open} onClose={handleClose} elevation={24}>
         <Paper variant="elevation" elevation={24}>

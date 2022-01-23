@@ -8,9 +8,12 @@ const initUser = {
         user: {
             username: '',
             id: 0,
-            savedPatches: []
-        }/* ,
-        setUser: () => ({}) */
+            savedPatches: [],
+            loadedPatch: {
+                noteData: [],
+                chartData: []
+            }
+        }
     }
 
 

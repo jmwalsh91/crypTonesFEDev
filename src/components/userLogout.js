@@ -1,27 +1,13 @@
 import * as React from 'react';
 import { axiosUser } from './axiosinstances';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { Paper } from '@mui/material'
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import InputAdornment from '@mui/material/InputAdornment'
-import InputLabel from '@mui/material/InputLabel';
-import Switch from '@mui/material/Switch'
-import IconButton from '@mui/material/IconButton';
-
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import LoginIcon from '@mui/icons-material/Login';
-import { Typography } from '@mui/material';
-import axios from 'axios'
-import { useState, useRef, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import { UserContext, initUser } from './userContext';
 
 export default function UserLogout() {
@@ -54,7 +40,7 @@ export default function UserLogout() {
  
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen} color="secondary">
+      <Button variant="text" onClick={handleClickOpen} color="primary">
        Log out
       </Button>
       <Dialog open={open} onClose={handleClose} elevation={24}>

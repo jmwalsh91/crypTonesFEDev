@@ -25,7 +25,7 @@ import PatchTable from './patchTable';
 import { LoadPatchButton } from './loadButton';
 import { GridCellParams, GridRowParams, selectedGridRowsCountSelector, useGridApiRef} from '@mui/x-data-grid';
 import { EditPatchButton } from './EditButton';
-
+import { DeletePatchButton } from './deletePatch';
 
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 
@@ -92,16 +92,19 @@ Eventually have user confirm pass when registering, setting state and re-renderi
     setPatchArray([])
   };
 
- const handleClickRegister = () => {
-     console.log('not undefined!')
- }
-
  const handleEditButton = (patchId) => {
    console.log(patchId)
    /* console.log(Object.entries(patchId))
    console.log('handle edit') */
 
  }
+
+ const handleDeleteButton = (patchId) => {
+  console.log(patchId)
+  /* console.log(Object.entries(patchId))
+  console.log('handle edit') */
+
+}
 /* 
   async function showPatches() { 
     console.log('i am being called?')      
@@ -127,7 +130,7 @@ Eventually have user confirm pass when registering, setting state and re-renderi
         <Paper variant="elevation" elevation={24}>
         <DialogTitle color="primary">Saved Patches</DialogTitle>
         <DialogContent color="secondary">
-            
+        
           
         <DialogContentText color="primary">
              these are patches
@@ -144,7 +147,9 @@ Eventually have user confirm pass when registering, setting state and re-renderi
                 }}/>
         </ListItemButton>
         <EditPatchButton patchId={patch._id} onClick={(patchId) => handleEditButton} />
-        <LoadPatchButton /* target={} *//>
+        {/* <LoadPatchButton/> */}
+        <DeletePatchButton patchId={patch._id} onClick={(patchId) => handleDeleteButton} />
+
     </ListItem>
         
     ))

@@ -1,16 +1,19 @@
+
 import React from "react";
 import { useState, useContext, useRef } from "react";
 import { UserContext } from "./userContext";
 import { axiosUser } from "./axiosinstances";
-import { IconButton } from "@mui/material";
+import { IconButton, Button } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import SendIcon from '@mui/icons-material/Send';
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+
 import { Typography } from "@mui/material";
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Paper} from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, TextField, Paper, DialogActions} from "@mui/material"
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
-export function EditPatchButton(props) {
+export function DeletePatchButton(props) {
 console.log(props)
 const [ open, setOpen ] = useState(false);
 const { user, setUser } = useContext(UserContext)
@@ -21,14 +24,14 @@ const handleOpen = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  
-function handleClickSubmitName() {
+  const handleDeleteClose = () => {
+     handleClose()
+
+  }
+function handleClickSubmitDelete() {
     
         console.log(props)
-        console.log(nameRef.current.value)
-        axiosUser.patch('/patch/rename/' + props.patchId, {
-            newName: nameRef.current.value
-        })
+        axiosUser.delete('/patch/delete/' + props.patchId)
         .then((res, err) => {
             if (err) {
             throw err
@@ -42,50 +45,34 @@ function handleClickSubmitName() {
         .catch(err => console.log(err))     
     }
  
-function handleClickEdit() {
-
-}
     return (
         <div>
           <IconButton
               size="large"
-              aria-label="edit patch"
+              aria-label="delete patch"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpen}
               color="secondary"
-              label="Edit"
+              label="Delete"
               //make sure to handle close!
             >
-              <EditIcon/>
-              <Typography variant="body2"> Rename</Typography>
+              <DeleteForeverIcon/>
+              <Typography variant="body2"> Delete Patch</Typography>
               </IconButton>
               <Dialog open={open} onClose={handleClose} elevation={24}>
                 <Paper variant="elevation" elevation={24}>
-                    <DialogTitle color="primary">Edit </DialogTitle>
-                    <DialogContent color="secondary">
-                    <TextField 
-            sx={{
-               input: { color: 'black' },
-              bgcolor: 'primary.main' }}
-              InputLabelProps={{style : {color : '#53e6e6'} }}
-            autoFocus
-            margin="dense"
-            id="patchName"
-            label="Rename"
-            type="string"
-            fullWidth
-            variant="filled"
-            required={true}
-           placeholder="New "
-           inputRef={nameRef}
-          />
-           <DialogActions sx={{
+                    <DialogTitle color="primary">Delete</DialogTitle>
+                   <DialogContent color="secondary">
+                    <Typography variant="h6" color="primary">Are you sure you want to delete?</Typography>
+                     <DialogActions sx={{
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: 'space-between'
                         }}>
-          <IconButton
+                        
+          
+                <IconButton
                 size="large"
                 aria-label="close"
                 aria-controls="close"
@@ -97,22 +84,21 @@ function handleClickEdit() {
                 <Typography variant="body2"> No, close. </Typography>
                 </IconButton>
 
-          <IconButton
-          size="large"
-          aria-label="submit name"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={handleClickSubmitName}
-          color="secondary"
-          label="Submit">
-              <SendIcon />
-              <Typography variant="body2"> Update name</Typography>
-          </IconButton>
-          </DialogActions>
-          </DialogContent>
+                <IconButton
+                size="large"
+                aria-label="submit name"
+                aria-controls="close delete"
+                onClick={handleClickSubmitDelete}
+                color="warning"
+                label="Submit">
+                    <DeleteForeverIcon/>
+                    <Typography variant="body2"> Yes, delete. </Typography>
+                </IconButton>
+        
+                </DialogActions>
+                </DialogContent>
           </Paper>
           </Dialog>
-            </div>
-
+          </div>
     )
 }

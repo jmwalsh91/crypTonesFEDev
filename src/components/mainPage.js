@@ -12,14 +12,14 @@ import { DataAV } from './dataAV';
 import { UserContext, UserContextProvider } from './userContext';
 
 export const MainPage = () => {
-   
+   const { user, setUser } = useContext(UserContext)
     
     useEffect(() => {
-        console.log(UserContext)
+        console.log(user)
     })
     return (
         <Container grid rowspacing={6}>
-            <Typography variant="h1" gutterBottom={true}>crypTones</Typography>
+            <Typography variant="h2" gutterBottom={true}>crypTones</Typography>
             <UserContextProvider>
                 <ResponsiveAppBar gutterBottom />
                 <DataAV/>

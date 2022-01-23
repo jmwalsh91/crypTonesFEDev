@@ -68,6 +68,9 @@ const cryptonesTheme = createTheme({
       fontFamily: 'Audiowide',
       color: '#9e988b'
     },
+    h2: {
+      color: '#9e988b'
+    },
     body1: {
       color: '#9e988b',
     },
